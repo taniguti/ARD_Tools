@@ -11,3 +11,7 @@ ARD_DB_namelist.sh:
 
 ARD_DB_make_importfile.sh: 
 	Create import plist file. The source file is expected as csv file. The 1st column is name of computer. 2nd is MAC address.
+
+AppleScript:
+ Export_computer_lists_ARD.applescript:
+      expport all computer list to $HOME/Documents/ComputerListBackups/<data&time>/
