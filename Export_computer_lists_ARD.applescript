@@ -1,13 +1,18 @@
 (* =====================================
-      Export all computer lists
+      Export all computer lists 
     ====================================== *)
 
 tell application "Remote Desktop"
-	set theListNames to name of every computer list
 	
 	set EXPORT_DIR to do shell script "echo \"$HOME/Documents/ComputerListBackups/`date +%Y%m%d-%H%M%S`\"  "
+	
+	set REMOTEDESKTP_PLLIST to do shell script "echo \"$HOME/Library/Containers/com.apple.RemoteDesktop/Data/Library/Preferences/com.apple.RemoteDesktop.plist\" "
 	do shell script " if [ ! -d \"" & EXPORT_DIR & "\" ]; then mkdir -p \"" & EXPORT_DIR & "\" ; fi"
-
+	do shell script "defaults export " & REMOTEDESKTP_PLLIST & " " & EXPORT_DIR & "/com.apple.RemoteDesktop.plist"
+	
+	-- Computer Lists in each files.
+	set theListNames to name of every computer list
+	
 	repeat with theName in theListNames
 		set UUID_of_LIST to id of computer list theName
 		set EXPORT_PLIST to EXPORT_DIR & "/" & theName & ".plist"
@@ -31,5 +36,7 @@ tell application "Remote Desktop"
 			
 			set itemNum to itemNum + 1
 		end repeat
+		
 	end repeat
+	
 end tell
