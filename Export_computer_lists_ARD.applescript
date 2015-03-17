@@ -4,9 +4,9 @@
 
 tell application "Remote Desktop"
 	
-	-- set EXPORT_DIR to do shell script "echo \"$HOME/Documents/ComputerListBackups/`date +%Y%m%d-%H%M%S`\"  "
+        set EXPORT_DIR to do shell script "echo \"$HOME/Documents/ComputerListBackups/`date +%Y%m%d-%H%M%S`\"  "
 	
-	set REMOTEDESKTP_PLLIST to do shell script "echo \"$HOME/Library/Containers/com.apple.RemoteDesktop/Data/Library/Preferences/com.apple.RemoteDesktop.plist\" "
+	-- set REMOTEDESKTP_PLLIST to do shell script "echo \"$HOME/Library/Containers/com.apple.RemoteDesktop/Data/Library/Preferences/com.apple.RemoteDesktop.plist\" "
 	do shell script " if [ ! -d \"" & EXPORT_DIR & "\" ]; then mkdir -p \"" & EXPORT_DIR & "\" ; fi"
 	-- do shell script "defaults export " & REMOTEDESKTP_PLLIST & " " & EXPORT_DIR & "/com.apple.RemoteDesktop.plist"
 	do shell script "defaults export com.apple.RemoteDesktop " & EXPORT_DIR & "/com.apple.RemoteDesktop.plist"
